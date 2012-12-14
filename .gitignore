@@ -14,6 +14,6 @@
 /log/*.log
 /tmp
 
-#Ignore swap files
+#Ignore swap files for some editors
 *.swp
 *~
