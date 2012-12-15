@@ -2,18 +2,25 @@ require 'spec_helper'
 
 describe "StaticPages" do
   describe "Home Page" do
-    it "Should have the content 'Sample App'" do
+    it "Should have the content 'fdTrades'" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       visit '/static_pages/home'
-      page.should have_content('Sample App')
+      page.should have_content('fdTrades')
     end
   end
   
   describe "About page" do
 
     it "should have the content 'About Us'" do
-      visit '/static_pages/about'
+      visit about_path
       page.should have_content('About Us')
     end
+  end
+  
+  describe "Contact page" do
+	it "should have the h1 'Contact'" do
+		visit contact_path
+		page.should have_selector('h1', text: 'Contact')
+	end
   end
 end
