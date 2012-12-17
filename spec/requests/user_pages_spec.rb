@@ -4,7 +4,7 @@ describe "User pages" do
   subject { page }
   describe "signup page" do
 	before { visit signup_path }
-    it { should_have_selector('h1',	text:'Sign up')}
-    it { should_have_selector('title', 	text: full_title('Sign Up'))}
+    it { should have_selector('h1') }
+    it { should have_selector('title') }
   end
 end
