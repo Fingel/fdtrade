@@ -5,7 +5,7 @@ describe "StaticPages" do
     it "Should have the content 'fdTrades'" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
       visit root_path
-      page.should have_content('fdTrades')
+      page.should have_content('FireTrades')
     end
   end
   

@@ -1,0 +1,12 @@
+<%= provide(:title,@user.first + " " + @user.last) %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= gravatar_for @user %>
+				<%= @user.first + " " + @user.last %>
+			</h1>
+		</section>
+	</aside>
+</div>
+Hello <%= @user.last %>, <%= @user.first %> &lt;<%= @user.email %>&gt;
