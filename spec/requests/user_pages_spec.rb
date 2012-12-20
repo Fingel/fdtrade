@@ -33,8 +33,10 @@ describe "User pages" do
         fill_in "First",        with: "Example"
         fill_in "Last",         with: "User"
         fill_in "Email",        with: "user@example.com"
+        fill_in "Ident",		with: "ab1234"
+        fill_in "Phone",		with: "1234567890"
         fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        fill_in "user_password_confirmation", with: "foobar"
       end
 
       it "should create a user" do
