@@ -3,7 +3,8 @@ require 'spec_helper'
 describe User do
 
   before { @user = User.new(first: "Austin", last: "Riba", email: "user@example.com",
-							password: "password", password_confirmation: "password", ident: "ab1234") }
+							password: "password", password_confirmation: "password", 
+							ident: "ab1234", rank: "Captain") }
 
   subject { @user }
 
@@ -17,6 +18,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token)}
   it { should respond_to(:authenticate) }
+  it { should respond_to(:rank) }
 
   
   it { should be_valid }

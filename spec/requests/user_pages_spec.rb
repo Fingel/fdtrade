@@ -37,6 +37,7 @@ describe "User pages" do
         fill_in "Phone",		with: "1234567890"
         fill_in "Password",     with: "foobar"
         fill_in "user_password_confirmation", with: "foobar"
+        fill_in "user_rank",	with: "Corporal"
       end
 
       it "should create a user" do
@@ -54,4 +55,45 @@ describe "User pages" do
     end
   end
   
+  describe "edit" do
+	let(:user) { FactoryGirl.create(:user)}
+	before do
+		sign_in user
+		visit edit_user_path(user)
+	end
+	before { visit edit_user_path(user) }
+
+    describe "page" do
+      it { should have_selector('h1',    text: "Update your profile") }
+      it { should have_selector('title', text: "Edit user") }
+      it { should have_link('Change this image', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Save Changes" }
+
+      it { should have_content('error') }
+    end
+    
+    describe "with valid information" do
+      let(:new_first)  { "New First" }
+      let(:new_last)	{ "New Last"}
+      let(:new_email) { "new@example.com" }
+      before do
+        fill_in "user_first",       with: new_first
+        fill_in "user_last",		with: new_last
+        fill_in "Email",            with: new_email
+        fill_in "Password",         with: user.password
+        fill_in "user_password_confirmation", with: user.password
+        click_button "Save Changes"
+      end
+
+      it { should have_selector('title', text: new_first + " " + new_last) }
+      it { should have_selector('div.alert.alert-success') }
+      it { should have_link('Sign out', href: signout_path) }
+      specify { user.reload.first.should  == new_first }
+      specify { user.reload.last.should == new_last}
+      specify { user.reload.email.should == new_email }
+    end
+  end
 end
