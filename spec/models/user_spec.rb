@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before { @user = User.new(first: "Austin", last: "Riba", email: "user@example.com",
-							password: "password", password_confirmation: "password") }
+							password: "password", password_confirmation: "password", ident: "ab1234") }
 
   subject { @user }
 
@@ -22,6 +22,11 @@ describe User do
   
   describe "when email is not present" do
 	before { @user.email = " "}
+	it { should_not be_valid }
+  end
+  
+  describe "when ident is not present" do
+	before { @user.ident = " "}
 	it { should_not be_valid }
   end
   
@@ -55,6 +60,26 @@ describe User do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
         @user.email = valid_address
+        @user.should be_valid
+      end      
+    end
+  end
+  describe "when ident format is invalid" do
+    it "should be invalid" do
+      idents = %w[123456 asbcad ab12345
+                     abc1234 ^%1234]
+      idents.each do |invalid_ident|
+        @user.ident = invalid_ident
+        @user.should_not be_valid
+      end      
+    end
+  end
+
+  describe "when ident format is valid" do
+    it "should be valid" do
+      idents = %w[ab1234 Bn7584 PO0000]
+      idents.each do |valid_ident|
+        @user.ident = valid_ident
         @user.should be_valid
       end      
     end

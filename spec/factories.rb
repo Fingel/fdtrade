@@ -5,5 +5,6 @@ FactoryGirl.define do
 		email	"batman@gmail.com"
 		password	"password"
 		password_confirmation "password"
+		ident	"ab1234"
 	end
 end
