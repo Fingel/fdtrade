@@ -110,9 +110,9 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
+  width: 100%;
 
 }
 
@@ -120,6 +120,9 @@ input {
   height: auto !important;
 }
 
+label {
+	@extend .control_label
+}
 #error_explanation {
   color: #f00;
   ul {
@@ -131,6 +134,10 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+ }
+ 
+ .input-name {
+	width: 49%;
  }
 
 /* miscellaneous */

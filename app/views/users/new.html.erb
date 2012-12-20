@@ -4,20 +4,16 @@
 	<div class="span6 offest3">
 		<%= form_for(@user) do |f| %>	
 			<%= render 'shared/error_messages' %>
-			<%= f.label :first %>
-			<%= f.text_field :first %>
+			<%= f.label :first, 'Name (First and Last)' %>
+			<%= f.text_field :first, class: 'input-name inline' %>
 			
-			<%= f.label :last %>
-			<%= f.text_field :last %>
+			<%= f.text_field :last, class: 'input-name inline' %>
 			
 			<%= f.label :email %>
 			<%= f.text_field :email %>
 			
-			<%= f.label :ident %>
+			<%= f.label :ident, 'Identification' %>
 			<%= f.text_field :ident %>
-			
-			<%= f.label :phone %>
-			<%= f.text_field :phone %>
 			
 			<%= f.label :house %>
 			<%= collection_select(:user, :house_id, House.all, :id, :name) %>
@@ -27,6 +23,12 @@
 			
 			<%= f.label :password_confirmation %>
 			<%= f.password_field :password_confirmation %>
+			
+			<p><b>Optional fields: </b></p>
+			
+			<%= f.label :phone %>
+			<%= f.text_field :phone %>
+			
 			<br/>
 			<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
 		<% end %>		
