@@ -6,7 +6,7 @@
 
 class User < ActiveRecord::Base
   belongs_to :house
-  attr_accessible :email, :first, :ident, :last, :phone, :house_id, :password, :password_confirmation
+  attr_accessible :email, :first, :ident, :last, :phone, :house_id, :password, :password_confirmation, :rank
   has_secure_password
   
   before_save { |user| user.email = email.downcase}
