@@ -4,22 +4,48 @@ describe "User pages" do
   subject { page }
   
 	describe "index" do
+	
+	let(:user) { FactoryGirl.create(:user) }
+    
     before do
-      sign_in FactoryGirl.create(:user)
-      FactoryGirl.create(:user, first: "Bob", last: "Beep", email: "bob@example.com")
-      FactoryGirl.create(:user, first: "Ben", last: "Bloop", email: "ben@example.com")
+      sign_in user
       visit users_path
     end
 
     it { should have_selector('title', text: 'All users') }
     it { should have_selector('h1',    text: 'All users') }
+    
+    describe "pagination" do
+	  before(:all) { 30.times { FactoryGirl.create(:user) } }
+	  after(:all) { User.delete_all }
+	  
+	  it { should have_selector('div.pagination') }
 
     it "should list each user" do
-      User.all.each do |user|
-        page.should have_selector('li', text: user.name)
-      end
+      User.paginate(page: 1) do |user|
+        page.should have_selector('li', text: full_name(user))
+       end
      end
     end
+    describe "delete links" do
+
+      it { should_not have_link('delete') }
+
+      describe "as an admin user" do
+        let(:admin) { FactoryGirl.create(:admin) }
+        before do
+          sign_in admin
+          visit users_path
+        end
+
+        it { should have_link('delete', href: user_path(User.first)) }
+        it "should be able to delete another user" do
+          expect { click_link('delete') }.to change(User, :count).by(-1)
+        end
+        it { should_not have_link('delete', href: user_path(admin)) }
+      end
+     end
+	end
 	describe "signup page" do
 		before { visit signup_path }
 		it { should have_selector('h1') }

@@ -1,4 +1,5 @@
 include ApplicationHelper
+include UsersHelper
 
 
 def sign_in(user)
