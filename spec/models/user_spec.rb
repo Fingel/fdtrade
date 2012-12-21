@@ -4,7 +4,7 @@ describe User do
 
   before { @user = User.new(first: "Austin", last: "Riba", email: "user@example.com",
 							password: "password", password_confirmation: "password", 
-							ident: "ab1234", rank: "Captain") }
+							house_id: 1, ident: "ab1234", rank: "Captain") }
 
   subject { @user }
 
@@ -19,9 +19,19 @@ describe User do
   it { should respond_to(:remember_token)}
   it { should respond_to(:authenticate) }
   it { should respond_to(:rank) }
+  it { should respond_to(:admin)}
 
   
   it { should be_valid }
+  it { should_not be_admin }
+  
+  describe "when admin attribute set to 'true'" do
+	before do
+		@user.save!
+		@user.toggle!(:admin)
+	end
+	it { should be_admin }
+  end
   
   describe "when email is not present" do
 	before { @user.email = " "}

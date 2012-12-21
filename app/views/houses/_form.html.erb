@@ -32,6 +32,10 @@
     <%= f.text_field :phone %>
   </div>
   <div class="field">
+	<%= f.label :battalion %><br/>
+	<%= f.number_field :battalion %>
+  </div>
+  <div class="field">
     <%= f.label :department %><br />
     <%= collection_select(:house, :department_id, Department.all, :id, :name) %>
   </div>
