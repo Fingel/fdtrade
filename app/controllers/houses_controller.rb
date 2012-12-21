@@ -1,4 +1,7 @@
 class HousesController < ApplicationController
+before_filter :signed_in_user
+before_filter :admin_user
+	
   # GET /houses
   # GET /houses.json
   def index

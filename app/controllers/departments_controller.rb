@@ -1,4 +1,7 @@
 class DepartmentsController < ApplicationController
+before_filter :signed_in_user
+before_filter :admin_user
+
   # GET /departments
   # GET /departments.json
   def index

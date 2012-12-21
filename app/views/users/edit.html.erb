@@ -32,10 +32,15 @@
 			<%= f.label :rank %>
 			<%= f.text_field :rank %>
 			
-			<br/>
+			
+			<br/><br/>
+			<%= gravatar_for @user %>
+			<a href="http://gravatar.com/emails" target="_blank">Change this image</a>		
+			<br/><br/><br/><br/>
+			
 			<%= f.submit "Save Changes", class: "btn btn-large btn-primary" %>
 		<% end %>
-		<%= gravatar_for @user %>
-		<a href="http://gravatar.com/emails">Change this image</a>		
+		
+		
 	</div>
 </div>
