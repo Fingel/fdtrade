@@ -1,6 +1,8 @@
 
-	<%= gravatar_for user, size: 52 %>
-	<%= link_to full_name(user), user %>
+	<%= gravatar_for user, size: 64 %>
+	<%= link_to full_name(user), user %> <br/>
+	<%= user.rank %> at <%=	user.house.name %> <br/>
+	Trades: 0
 	<% if current_user.admin? && !current_user?(user) %>
 		| <%= link_to "delete", user, method: :delete,
 									  data: { confirm: "You sure?" } %>
