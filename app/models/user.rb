@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   belongs_to :house
   attr_accessible :email, :first, :ident, :last, :phone, :house_id, :password, :password_confirmation, :rank
   has_secure_password
+  has_many :trades, dependent: :destroy
   
   before_save { |user| user.email = email.downcase}
   before_save :create_remember_token

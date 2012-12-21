@@ -13,4 +13,11 @@ FactoryGirl.define do
 			admin true
 		end
 	end
+	
+	factory :trade do
+		date DateTime.now
+		flipflop true
+		worktrade false
+		user
+	end
 end

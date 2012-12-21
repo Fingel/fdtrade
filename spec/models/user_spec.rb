@@ -20,6 +20,7 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:rank) }
   it { should respond_to(:admin)}
+  it { should respond_to(:trades)}
 
   
   it { should be_valid }
@@ -140,5 +141,26 @@ end
 		before { @user.save }
 		its(:remember_token) { should_not be_blank }
 	end
+	describe "trade associations" do
 
+    before { @user.save }
+    let!(:sooner_trade) do 
+      FactoryGirl.create(:trade, user: @user, date: 1.day.from_now)
+    end
+    let!(:further_trade) do
+      FactoryGirl.create(:trade, user: @user, date: 2.days.from_now)
+    end
+
+    it "should have the right trades in the right order" do
+      @user.trades.should == [sooner_trade, further_trade]
+    end
+    it "should destroy associated trades" do
+      trades = @user.trades.dup
+      @user.destroy
+      trades.should_not be_empty
+      trades.each do |trade|
+        Trade.find_by_id(trade.id).should be_nil
+      end
+    end
+  end
 end
