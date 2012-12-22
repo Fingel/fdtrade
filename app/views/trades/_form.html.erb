@@ -1,33 +1,25 @@
 <%= form_for(@trade) do |f| %>
 	<% if @trade.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@trade.errors.count, "error") %> prohibited this trade from being saved:</h2>
-
-      <ul>
-      <% @trade.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= render 'shared/error_messages', object: f.object %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= select_datetime %>
-  </div>
-  <div class="field">
-    <%= f.label :flipflop %><br />
+	<h3>Create a trade</h3>
+    <%= f.label :date %>
+    <div class="input-append">
+		<%= f.text_field :date, id: 'datepicker', class: 'span3 datetime' %>
+		<span class="add-on"><i class="icon-th"></i></span>
+    </div>
+    <br/>
+    <%= f.label :flipflop, class: 'checkbox inline' %>
     <%= f.check_box :flipflop %>
-  </div>
-  <div class="field">
-    <%= f.label :worktrade %><br />
+    <%= f.label :worktrade, class: 'checkbox inline' %>
     <%= f.check_box :worktrade %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
+        <br/><br/>
+    <%= f.label :description %>
     <%= f.text_area :description %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>
+<script type="text/javascript">
+	$('#datepicker').datepicker({format: 'yyyy-mm-dd hh:ii'});
+</script>
