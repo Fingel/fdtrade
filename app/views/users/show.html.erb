@@ -8,9 +8,11 @@
 			</h1>
 			<%= @user.rank %> at <%= @user.house.name %>
 		</section>
-		<div class="span3">
+	<% if current_user?(@user) %>
+	<div class="span3">
 		<%= render partial: '/trades/form' %>
 	</div>
+	<% end %>
 	</aside>
 	
 	<div class="span8">

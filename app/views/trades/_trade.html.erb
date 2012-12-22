@@ -1,8 +1,8 @@
 <li>
 	<span class="trade_content"><%= trade.description %></span>
 	<span class="trade_options">
-	FlipFlop? <b><%= trade.flipflop %></b> 
-	WorkTrade? <b><%= trade.worktrade %></b>
+	Flip-flop: <b><%= trade.flipflop %></b> 
+	Work Trade: <b><%= trade.worktrade %></b>
 	</span>
 	<span class="timestamp">
 		<% if DateTime.now > trade.date %>
@@ -11,6 +11,7 @@
 			In <%= distance_of_time_in_words_to_now(trade.date) %>.
 		<% end %>
 		(<%= trade.date %>) <br/>
+		<hr/>
 	</span>
 
 </li>
