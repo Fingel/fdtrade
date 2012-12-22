@@ -11,6 +11,11 @@
 			In <%= distance_of_time_in_words_to_now(trade.date) %>.
 		<% end %>
 		(<%= trade.date %>) <br/>
+		<% if current_user?(trade.user) %>
+			<%= link_to "delete", trade, method: :delete,
+										 data: {confirm: "You sure?" },
+										 title: trade.description %>
+		<% end %>
 		<hr/>
 	</span>
 

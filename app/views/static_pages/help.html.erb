@@ -1,3 +1,18 @@
 <% provide(:title, 'Help') %>
-<h1>StaticPages#help</h1>
-<p>Find me in app/views/static_pages/help.html.erb</p>
+<h1>Help</h1>
+<h3>Finding Trades</h3>
+<p>Finding trades is easy. Just take a look at the <%= link_to "Hot List", root_path %> 
+for trades that have been requested by others. You can see all trades or
+filter by battalion by using the buttons near the top.</p> 
+<p>You can also see which trades individual users have requested. 
+You can find a list of all users on the <%= link_to "Users Page", users_path %>
+. Click on a name to view a profile, where all requested trades will be listed.</p>
+<h3>Requesting a Trade</h3>
+<p>If you'd like to create a trade so that others may see it and contact you,
+visit your Profile Page and use the form
+on the left. Make sure to only pick a date thats in the future! All trades were 
+set for a date in the past will be hidden. </p>
+<p>Your trade will now appear on the hot list as well as on your profile.</p>
+<p><strong>If someone has contacted you about one of your trades, and you have come
+to a arrangement, make sure to delete your trade from the listing so you won't
+be contacted again.</strong></p>

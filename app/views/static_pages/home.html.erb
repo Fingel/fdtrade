@@ -11,13 +11,31 @@
 	</aside>
 	<div class="span8">
 		<h3>Hot List</h3>
+		<ul class="nav nav-pills">
+			<% if params[:battalion] %>
+				<li >
+				<%= link_to "All Trades", root_path %>
+				</li>
+				<li class="active">
+				<%= link_to "My Battalion", root_path(:battalion => current_user.house.battalion) %>
+				</li>
+			<% else %>
+				<li class="active">
+				<%= link_to "All Trades", root_path %>
+				</li>
+				<li>
+				<%= link_to "My Battalion", root_path(:battalion => current_user.house.battalion) %>
+				</li>
+			<% end %>
+		</ul>
 		<%= render 'shared/feed' %>
 	</div>
 </div>
 <% else %>
 <div class="center hero-unit">
-	<h1>FireTrades</h1>
-	<p>This is the home page for FireTrade</p>
+	<h1>Fire Trades</h1>
+	<p>Fire Trades allows firefighers to quickly and easily find shift trades.</p>
+	<p>To get started, click the button below.</p>
 
 	<%= link_to "Make a Trade!", signup_path, class: "btn btn-large btn-primary" %>
 </div>

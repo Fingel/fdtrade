@@ -6,22 +6,31 @@
 				<%= gravatar_for(@user, size: 96) %>
 				<%= full_name(@user) %>
 			</h1>
-			<%= @user.rank %> at <%= @user.house.name %>
+			<% if current_user?(@user) %>
+				<%= link_to "Edit profile", edit_user_path(@user) %>
+				<div class="span3">
+					<%= render partial: '/trades/form' %>
+				</div>
+			<% end %>
 		</section>
-	<% if current_user?(@user) %>
-	<div class="span3">
-		<%= render partial: '/trades/form' %>
-	</div>
-	<% end %>
+		<%if !current_user?(@user) %>
+			<section>
+				<%= @user.rank %> at <%= @user.house.name %><br/>
+				Phone: <b><%= @user.phone %></b> <br/>
+				House Phone: <b><%= @user.house.phone %></b>
+			</section>
+		<% end %>
 	</aside>
 	
 	<div class="span8">
-		<% if @user.trades.any? %>
-			<h3>Trades (<%= @user.trades.count %>)</h3>
+		<h3>Trades (<%= @trades.count %>)</h3>
+		<% if @trades.any? %>
 			<ol class="trades">
-				<%= render @trades %>
+				<%= render @trades%>
 			</ol>
 			<%= will_paginate @trades %>
+		<% else %>
+			This user has no trades.
 		<% end %>
 	</div>
 

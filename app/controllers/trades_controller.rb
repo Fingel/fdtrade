@@ -1,5 +1,6 @@
 class TradesController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :destroy]
+	before_filter :correct_user , only: :destroy
   def create
 	@trade = current_user.trades.build(params[:trade])
 	if @trade.save
@@ -12,8 +13,17 @@ class TradesController < ApplicationController
   end
 
   def destroy
+	@trade.destroy
+	flash[:success] = "Trade Deleted"
+	redirect_to current_user
   end
 
   def index
   end
+  
+  private
+	def correct_user
+		@trade = current_user.trades.find_by_id(params[:id])
+		redirect_to root_url if @trade.nil?
+	end
 end

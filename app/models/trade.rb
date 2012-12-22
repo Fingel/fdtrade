@@ -6,4 +6,8 @@ class Trade < ActiveRecord::Base
   validates :date,		presence: true
   
   default_scope order: 'trades.date ASC'
+  
+  def self.current
+	where("date > ?", Time.now)
+  end
 end

@@ -25,8 +25,14 @@ class User < ActiveRecord::Base
   validates :ident, presence: true, format: { with: VALID_IDENT_REGEX }
   
   def feed
-	Trade.where('date > ?', Time.now)
+	Trade.current
   end
+  
+  def battalion_feed(battalion)
+		@houses = House.find_by_battalion(battalion)
+		@users = @houses.users
+		trades = Trade.current.find_all_by_user_id(@users)
+ end
   
   private 
 	def create_remember_token
