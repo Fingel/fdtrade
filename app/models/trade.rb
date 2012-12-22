@@ -1,5 +1,5 @@
 class Trade < ActiveRecord::Base
-  attr_accessible :date, :flipflop, :worktrade
+  attr_accessible :date, :flipflop, :worktrade, :description
   belongs_to :user
   
   validates :user_id,	presence: true

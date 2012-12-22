@@ -18,7 +18,9 @@ describe "Authentication" do
 	end
   
 	describe "with valid information" do
-      let(:user) { FactoryGirl.create(:user) }
+
+		let(:user) { FactoryGirl.create(:user) }
+
       before { sign_in user }
 
       it { should have_selector('title', text: full_name(user)) }
@@ -51,6 +53,17 @@ describe "Authentication" do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       
+      describe "in the Trades controller" do
+		describe "submitting to the create action" do
+          before { post trades_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete trade_path(FactoryGirl.create(:trade)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)

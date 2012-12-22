@@ -4,7 +4,7 @@ describe Trade do
 	let(:user) { FactoryGirl.create(:user) }
 	before {
 		@trade = user.trades.build(date: DateTime.now+1, 
-		flipflop: true, worktrade: false)
+		flipflop: true, worktrade: false, description: "Its my birthday.")
 	}
 	
 	subject { @trade }
@@ -13,6 +13,7 @@ describe Trade do
 	it { should respond_to(:flipflop) }
 	it { should respond_to(:worktrade) }
 	it { should respond_to(:user_id) }
+	it { should respond_to(:description )}
 	
 	it { should be_valid }
 	

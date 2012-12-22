@@ -9,9 +9,11 @@ Fdtradeapp::Application.routes.draw do
   match '/contact',	to: 'static_pages#contact'
 
   resources :sessions, only: [:new, :create, :destroy]
+  resources :trades,   only: [:create, :destroy, :index]
   resources :users
   resources :houses
   resources :departments
+  
 
 
   # The priority is based upon order of creation:

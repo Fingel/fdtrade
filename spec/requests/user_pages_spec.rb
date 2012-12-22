@@ -4,8 +4,8 @@ describe "User pages" do
   subject { page }
   
 	describe "index" do
-	
 	let(:user) { FactoryGirl.create(:user) }
+	
     
     before do
       sign_in user
@@ -54,10 +54,18 @@ describe "User pages" do
   
 	describe "profile page" do
 		let(:user) { FactoryGirl.create(:user) }
+		let!(:t1) { FactoryGirl.create(:trade, user: user, date: DateTime.now, description: "Dont wanna work") }
+		let!(:t2) { FactoryGirl.create(:trade, user: user, date: DateTime.now+1, description: "Dont wanna work") }
 		before { visit user_path(user) }
 		
 		it { should have_selector('h1', text: user.first + " " + user.last) }
 		it { should have_selector('title', text: user.first + " " + user.last) }
+		
+		describe "trades" do
+			it { should have_content(t1.description) }
+			it { should have_content(t2.description) }
+			it { should have_content(user.trades.count) }
+		end
 	end
 	
 	describe "signup" do

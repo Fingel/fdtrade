@@ -1,0 +1,33 @@
+<%= form_for(@trade) do |f| %>
+	<% if @trade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trade.errors.count, "error") %> prohibited this trade from being saved:</h2>
+
+      <ul>
+      <% @trade.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= select_datetime %>
+  </div>
+  <div class="field">
+    <%= f.label :flipflop %><br />
+    <%= f.check_box :flipflop %>
+  </div>
+  <div class="field">
+    <%= f.label :worktrade %><br />
+    <%= f.check_box :worktrade %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

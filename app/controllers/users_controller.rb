@@ -19,6 +19,8 @@ before_filter :admin_user,		only: :destroy
   
   def show
 	@user = User.find(params[:id])
+	@trade = Trade.new
+	@trades = @user.trades.paginate(page: params[:page])
 	respond_to do |format|
 		format.html
 		format.json { 

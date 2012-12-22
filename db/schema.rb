@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221051207) do
+ActiveRecord::Schema.define(:version => 20121222005144) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -38,11 +38,12 @@ ActiveRecord::Schema.define(:version => 20121221051207) do
 
   create_table "trades", :force => true do |t|
     t.datetime "date"
-    t.boolean  "flipflop"
-    t.boolean  "worktrade"
+    t.boolean  "flipflop",    :default => false
+    t.boolean  "worktrade",   :default => false
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.text     "description"
   end
 
   add_index "trades", ["user_id", "date"], :name => "index_trades_on_user_id_and_date"

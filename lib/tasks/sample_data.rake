@@ -20,12 +20,12 @@ namespace :db do
 					phone:		"1234567890",
 					house_id:	1,
 					email:		"austin.riba@gmail.com",
-					rank:		"Peon",
+					rank:		"Captain",
 					password:	"welcome123",
 					password_confirmation: "welcome123")
 		admin.toggle!(:admin)
 					
-		99.times do |n|
+		50.times do |n|
 			first 	= Faker::Name.first_name
 			last	= Faker::Name.last_name
 			phone	= Faker::PhoneNumber.phone_number
@@ -36,11 +36,21 @@ namespace :db do
 						email:	email,
 						phone: 	phone,
 						house_id: 	1,
-						rank:	"peon",
+						rank:	"Fire Fighter",
 						ident:	"ab1234",
 						password:	password,
 						password_confirmation:	password)
-			end
+		end
+		
+		users = User.all(limit: 6)
+		6.times do |n|
+			description = Faker::Lorem.sentence(8)
+			users.each { |user| user.trades.create!(description: description, date: DateTime.now+(n+1))}
+		end
+		2.times do |n|
+			description = Faker::Lorem.sentence(8)
+			users.each { |user| user.trades.create!(description: description, date: DateTime.now-(n+1))}
 		end
 	end
+end
 			

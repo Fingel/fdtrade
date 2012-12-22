@@ -3,12 +3,23 @@
 	<aside class="span4">
 		<section>
 			<h1>
-				<%= gravatar_for @user %>
+				<%= gravatar_for(@user, size: 96) %>
 				<%= full_name(@user) %>
 			</h1>
+			<%= @user.rank %> at <%= @user.house.name %>
 		</section>
 	</aside>
+	<div class="span8">
+		<% if @user.trades.any? %>
+			<h3>Trades (<%= @user.trades.count %>)</h3>
+			<ol class="trades">
+				<%= render @trades %>
+			</ol>
+			<%= will_paginate @trades %>
+		<% end %>
+	</div>
+	<%= render partial: '/trades/form' %>
 </div>
 <ul>
-<%= @user.rank %>
+
 </ul>
