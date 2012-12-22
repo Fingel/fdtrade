@@ -19,12 +19,13 @@ before_filter :admin_user,		only: :destroy
   
   def show
 	@user = User.find(params[:id])
-	@trade = Trade.new
+	@trade = @user.trades.build
 	@trades = @user.trades.paginate(page: params[:page])
 	respond_to do |format|
 		format.html
 		format.json { 
 			@user.password_digest = ""
+			@user.remember_token = ""
 			render json: @user
 		}
 	end

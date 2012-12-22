@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
   validates :last, presence: true, length: { maximum: 50 }
   validates :ident, presence: true, format: { with: VALID_IDENT_REGEX }
   
+  def feed
+	Trade.where('date > ?', Time.now)
+  end
+  
   private 
 	def create_remember_token
 		self.remember_token = SecureRandom.urlsafe_base64

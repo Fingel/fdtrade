@@ -1,7 +1,24 @@
 <% provide(:title, 'Home') %>
+<% if signed_in? %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<%= render 'shared/user_info' %>
+		</section>
+		<section>
+			<%= link_to "Create a Trade", current_user, class: "btn btn-medium btn-primary" %>
+		</section>
+	</aside>
+	<div class="span8">
+		<h3>Hot List</h3>
+		<%= render 'shared/feed' %>
+	</div>
+</div>
+<% else %>
 <div class="center hero-unit">
 	<h1>FireTrades</h1>
 	<p>This is the home page for FireTrade</p>
 
 	<%= link_to "Make a Trade!", signup_path, class: "btn btn-large btn-primary" %>
 </div>
+<% end %>

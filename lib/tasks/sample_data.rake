@@ -42,7 +42,7 @@ namespace :db do
 						password_confirmation:	password)
 		end
 		
-		users = User.all(limit: 6)
+		users = User.limit(6).offset(1)
 		6.times do |n|
 			description = Faker::Lorem.sentence(8)
 			users.each { |user| user.trades.create!(description: description, date: DateTime.now+(n+1))}
