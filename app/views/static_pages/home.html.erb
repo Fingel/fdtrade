@@ -12,21 +12,12 @@
 	<div class="span8">
 		<h3>Hot List</h3>
 		<ul class="nav nav-pills">
-			<% if params[:battalion] %>
-				<li >
+				<li class="<%= 'active' if current_page?(root_path) %>">
 				<%= link_to "All Trades", root_path %>
 				</li>
-				<li class="active">
-				<%= link_to "My Battalion", root_path(:battalion => current_user.house.battalion) %>
+				<li class="<%= 'active' if current_page?(battalion_path) %>">
+				<%= link_to "My Battalion", battalion_path %>
 				</li>
-			<% else %>
-				<li class="active">
-				<%= link_to "All Trades", root_path %>
-				</li>
-				<li>
-				<%= link_to "My Battalion", root_path(:battalion => current_user.house.battalion) %>
-				</li>
-			<% end %>
 		</ul>
 		<%= render 'shared/feed' %>
 	</div>

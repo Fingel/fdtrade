@@ -28,10 +28,10 @@ class User < ActiveRecord::Base
 	Trade.current
   end
   
-  def battalion_feed(battalion)
-		@houses = House.find_by_battalion(battalion)
-		@users = @houses.users
-		trades = Trade.current.find_all_by_user_id(@users)
+  def battalion_feed
+		user_ids = "SELECT id from users u where u.house_id IN(
+					SELECT id  from houses where battalion = :battalion)"
+		Trade.where("user_id in (#{user_ids})", battalion: house.battalion)
  end
   
   private 
