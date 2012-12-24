@@ -24,8 +24,9 @@ group :test do
 	gem 'factory_girl_rails'
 end
 
-group :production do
-	gem 'pg'
+group :production, :development do
+	gem 'mysql2'
+	
 end
 
 
