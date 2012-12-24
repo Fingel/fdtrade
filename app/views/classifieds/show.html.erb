@@ -1,0 +1,27 @@
+
+<p>
+  <b>Desciption:</b>
+  <%= @classified.description %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @classified.price %>
+</p>
+
+<p>
+  <b>Date available:</b>
+  <%= @classified.date %>
+</p>
+
+<p>
+  <%= @classified.content %>
+</p>
+
+<% if current_user?(@classified.user) %>
+	<%= link_to 'Edit', edit_classified_path(@classified) %> |
+	<%= link_to "Delete", @classified, method: :delete,
+										 data: {confirm: "You sure?" },
+										 title: @classified.description %>|
+<% end %>
+<%= link_to 'Back', classifieds_path %>
