@@ -7,7 +7,7 @@ Fdtradeapp::Application.routes.draw do
   match '/help',		to:	'static_pages#help'
   match	'/about',		to: 'static_pages#about'
   match '/contact',		to: 'static_pages#contact'
-  match '/battalion',	to: 'static_pages#battalion'
+  match '/calendar',	to: 'static_pages#calendar'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :trades,   only: [:create, :destroy, :index]

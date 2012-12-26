@@ -1,0 +1,16 @@
+<div id="calendar">
+	<h2 id="month">
+		<%= link_to "<", params.merge(:month => (@date.beginning_of_month-1).strftime("%Y-%m")) %>
+		<%=h @date.strftime("%B %Y") %>
+		<%= link_to ">", params.merge(:month => (@date.end_of_month+1).strftime("%Y-%m")) %>
+  </h2>
+  <%= calendar_for(@feed_items, :year => @date.year, :month => @date.month) do |t| %>
+	  <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
+	  <%= t.day do |day, items| %>
+		<%= day.day %> <br />
+		<% items.each do |feed_item| %>
+		  <%= h(link_to full_name(feed_item.user), user_path(feed_item.user)) %>
+		<% end %>
+	  <% end %>
+  <% end %>
+</div>

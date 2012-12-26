@@ -11,16 +11,30 @@
 	</aside>
 	<div class="span8">
 		<h3>Hot List</h3>
+		<div class="btn-toolbar" style="float:right">
+			<div class="btn-group">
+				<%= link_to root_path, class:  if url_for == root_path then  'btn active' else 'btn' end  do%> 
+						<i class="icon-list"></i>
+				<% end %>
+				<%= link_to calendar_path, class:  if url_for == calendar_path then  'btn active' else 'btn' end  do%> 
+						<i class="icon-calendar"></i>
+				<% end %>
+			</div>
+		</div>
 		<ul class="nav nav-pills">
-				<li class="<%= 'active' if current_page?(root_path) %>">
-				<%= link_to "My Department", root_path %>
+				<li class="<%= 'active' if !params[:battalion] || params[:battalion] == 'false' %>">
+				<%= link_to "My Department", params.merge(battalion: false) %>
 				</li>
-				<li class="<%= 'active' if current_page?(battalion_path) %>">
-				<%= link_to "My Battalion", battalion_path %>
+				<li class="<%= 'active' if params[:battalion] == 'true' %>">
+				<%= link_to "My Battalion", params.merge(battalion: true) %>
 				</li>
 		</ul>
-		<%= render 'shared/feed' %>
-	</div>
+			<% if url_for == root_path %>
+				<%= render 'shared/feed' %>
+			<% else %>
+				<%= render 'shared/calendar' %>
+			<% end %>
+	</div>	
 </div>
 <% else %>
 <div class="center hero-unit">
