@@ -25,7 +25,22 @@ class ClassifiedsController < ApplicationController
 	def destroy
 		@classified = Classified.find(params[:id])
 		@classified.destroy
-		flas[:success] = "Classidied successfully deleted"
+		flash[:success] = "Classified successfully deleted"
 		redirect_to classifieds_url
+	end
+	
+	def edit
+		@classified = Classified.find(params[:id])
+	end
+	
+	def update
+		@classified = Classified.find(params[:id])
+		if @classified.update_attributes(params[:classified])
+			flash[:success] = "Classified successfully updated"
+			redirect_to @classified
+		else
+			flash[:error] = "Error saving classified"
+			render 'edit'
+		end
 	end
 end

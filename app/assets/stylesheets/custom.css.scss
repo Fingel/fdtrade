@@ -142,9 +142,9 @@ label {
  .input-name {
 	width: 49%;
  }
- aside 
+ 
  /* trades */
- .trades {
+ .item_list {
   list-style: none;
   margin: 10px 0 0 0;
 
@@ -183,6 +183,11 @@ label {
       border-bottom: 1px solid $grayLighter;
     }
   }
+}
+/* classifieds */
+
+#classifieds {
+	margin-top: 10px;
 }
 /* calendar */
 #calendar table {
@@ -261,4 +266,16 @@ label {
 
 .datetime{
 	height: 30px !important;
+}
+
+#calendar_switch {
+	float: right;
+}
+
+#classifieds_main_button {
+	float: right;
+}
+
+.inline {
+	display: inline;
 }

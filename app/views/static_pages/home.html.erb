@@ -11,12 +11,12 @@
 	</aside>
 	<div class="span8">
 		<h3>Hot List</h3>
-		<div class="btn-toolbar" style="float:right">
+		<div class="btn-toolbar" id="calendar_switch">
 			<div class="btn-group">
-				<%= link_to root_path, class:  if url_for == root_path then  'btn active' else 'btn' end  do%> 
+				<%= link_to  root_path(params), class:  if url_for == root_path then  'btn active' else 'btn' end, boobs: 'lots' do %> 
 						<i class="icon-list"></i>
 				<% end %>
-				<%= link_to calendar_path, class:  if url_for == calendar_path then  'btn active' else 'btn' end  do%> 
+				<%= link_to calendar_path(params), class:  if url_for == calendar_path then  'btn active' else 'btn' end  do%> 
 						<i class="icon-calendar"></i>
 				<% end %>
 			</div>

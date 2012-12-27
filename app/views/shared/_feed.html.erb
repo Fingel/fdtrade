@@ -1,5 +1,5 @@
 <% if @feed_items.any? %>
-	<ol class="trades">
+	<ol class="item_list">
 		<%= render partial: 'shared/feed_item', collection: @feed_items %>
 		<%= will_paginate @feed_items %>
 	</ol>

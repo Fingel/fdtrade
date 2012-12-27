@@ -1,17 +1,12 @@
 <li>
+	<%= link_to gravatar_for(classified.user), classified.user %>
 	<span class="classified_description">
 		<%= link_to classified.description, classified_path(classified) %>
 	</span>
-
+	<br/>
 	<span class="timestamp">
-		Available: 
-		<% if DateTime.now > classified.date %>
-			<%= distance_of_time_in_words_to_now(classified.date) %> ago.
-		<% else %>
-			In <%= distance_of_time_in_words_to_now(classified.date) %>.
-		<% end %>
-		(<%= classified.date %>) <br/>
-		<hr/>
+		Posted: 
+			<%= distance_of_time_in_words_to_now(classified.created_at) %> ago. <br/>
 	</span>
-
+	<br/>
 </li>
