@@ -1,4 +1,6 @@
 class ClassifiedsController < ApplicationController
+before_filter :signed_in_user
+before_filter :correct_user, only: [:edit, :destroy]
 	def new
 		@classified = Classified.new
 	end
@@ -42,5 +44,10 @@ class ClassifiedsController < ApplicationController
 			flash[:error] = "Error saving classified"
 			render 'edit'
 		end
+	end
+	private
+	def correct_user
+		@classified = current_user.classifieds.find_by_id(params[:id])
+		redirect_to root_url if @classified.nil?
 	end
 end

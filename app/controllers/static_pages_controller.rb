@@ -10,7 +10,7 @@ require 'will_paginate/array'
 			@feed_items = current_user.feed.paginate(page: params[:page], per_page: 10)
 		end
 	else
-		redirect_to root_url
+		render 'home'
 	end
 	
   end
@@ -31,19 +31,6 @@ require 'will_paginate/array'
   end
   
   def help
-  end
-  
-  def battalion
-	if signed_in?
-		@feed_items = current_user.battalion_feed.paginate(page: params[:page], per_page: 10)
-		if params[:calendar]
-			render 'calendar'
-		else
-			render 'home'
-		end
-	else
-		redirect_to root_url
-	end
   end
   
   def about
