@@ -6,7 +6,7 @@
 
 class User < ActiveRecord::Base
   belongs_to :house
-  attr_accessible :email, :first, :ident, :last, :phone, :house_id, :password, :password_confirmation, :rank
+  attr_accessible :email, :first, :ident, :last, :phone, :house_id, :password, :password_confirmation, :rank, :passoword_reset_sent_at
   has_secure_password
   has_many :trades, dependent: :destroy
   has_many :classifieds, dependent: :destroy
@@ -33,6 +33,13 @@ class User < ActiveRecord::Base
 		user_ids = "SELECT id from users u where u.house_id IN(
 					SELECT id  from houses where battalion = :battalion)"
 		Trade.current.where("user_id in (#{user_ids})", battalion: house.battalion)
+ end
+ 
+ def send_password_reset
+	self.password_reset_token = SecureRandom.urlsafe_base64
+	self.password_reset_sent_at = Time.zone.now
+	save!(validate: false)
+	UserMailer.password_reset(self).deliver
  end
   
   private 

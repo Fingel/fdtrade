@@ -1,5 +1,7 @@
 Fdtradeapp::Application.routes.draw do
 
+  get "password_resets/new"
+
   root to: 'static_pages#home'
   match '/signup',		to:	'users#new'
   match '/signin',		to:	'sessions#new'
@@ -15,6 +17,7 @@ Fdtradeapp::Application.routes.draw do
   resources :houses
   resources :departments
   resources :classifieds
+  resources :password_resets
   
 
 

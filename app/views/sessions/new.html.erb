@@ -1,19 +1,31 @@
 <% provide(:title, "Sign in") %>
 
 <div class="row">
-	<div class="span6 offset3">
-		<h1>Sign in</h1>
+	<div class="span6 offset2">
+	<div class="spacer">&nbsp;</div>
 
-		<%= form_for(:session, url: sessions_path) do |f| %>
-			<%= f.label :email %>
-			<%= f.text_field :email %>
+		<%= form_for(:session, url: sessions_path, html: { class: 'form-horizontal', style: 'float:left' }) do |f| %>
+			<div class="control-group">
+				<label for="session_email" class="control-label">Email:</label>
+				<div class="controls">
+					<%= f.text_field :email %>
+				</div>
+			</div>
+			<label for="session_password" class="control-label">Passowrd:</label>
+			<div class="controls">
+				<%= f.password_field :password %>
+			</div>
+			<div class="controls">
+				<label class="checkbox">
+				<%= check_box_tag :remember_me, 1, params[:remember_me] %> Rememeber Me
+				</label>
+				<%= f.submit "Sign in", class: "btn" %>
+				<p><%= link_to "Forgotten password?", new_password_reset_path %></p>
+			</div>
 			
-			<%= f.label :password %>
-			<%= f.password_field :password %>
-			
-			<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
 		<% end %>
-		
-		<p>New to FireTrades? <%= link_to "Sign up", signup_path %></p>
+		<center>
+			<p>Don't have an account? <%= link_to "Register here", signup_path %></p>
+		</center>
 	</div>
 </div>
