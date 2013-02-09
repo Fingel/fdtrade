@@ -1,8 +1,12 @@
 <li>
 	<span class="trade_content"><%= trade.description %></span>
 	<span class="trade_options">
-	Flip-flop: <b><%= trade.flipflop %></b> 
-	Work Trade: <b><%= trade.worktrade %></b>
+		<% if trade.flipflop %>
+			Flipflop
+		<% end %>
+		<% if trade.worktrade %>
+			24hr
+		<% end %>
 	</span>
 	<span class="timestamp">
 		<% if DateTime.now > trade.date %>

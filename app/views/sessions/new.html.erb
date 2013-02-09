@@ -11,7 +11,7 @@
 					<%= f.text_field :email %>
 				</div>
 			</div>
-			<label for="session_password" class="control-label">Passowrd:</label>
+			<label for="session_password" class="control-label">Password:</label>
 			<div class="controls">
 				<%= f.password_field :password %>
 			</div>
@@ -20,12 +20,11 @@
 				<%= check_box_tag :remember_me, 1, params[:remember_me] %> Rememeber Me
 				</label>
 				<%= f.submit "Sign in", class: "btn" %>
+				<br/><br/>
 				<p><%= link_to "Forgotten password?", new_password_reset_path %></p>
+				<p>Don't have an account? <%= link_to "Register here", signup_path %></p>
 			</div>
 			
 		<% end %>
-		<center>
-			<p>Don't have an account? <%= link_to "Register here", signup_path %></p>
-		</center>
 	</div>
 </div>

@@ -67,4 +67,9 @@ Fdtradeapp::Application.configure do
   
   #Google analytics
   GA.tracker = "UA-37233090-1"
+  
+    
+  #Mailer stuff
+  config.action_mailer.default_url_options = { host: 'firetrades.com' }
+  config.action_mailer.delivery_method = :ses
 end

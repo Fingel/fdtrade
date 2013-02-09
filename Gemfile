@@ -8,6 +8,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'google-analytics-rails'
 gem 'watu_table_builder', :require => 'table_builder'
+gem "aws-ses", :require => 'aws/ses'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -13,7 +13,7 @@
 		<h3>Hot List</h3>
 		<div class="btn-toolbar" id="calendar_switch">
 			<div class="btn-group">
-				<%= link_to  root_path(params), class:  if url_for == root_path then  'btn active' else 'btn' end, boobs: 'lots' do %> 
+				<%= link_to  root_path(params), class:  if url_for == root_path then  'btn active' else 'btn' end do %> 
 						<i class="icon-list"></i>
 				<% end %>
 				<%= link_to calendar_path(params), class:  if url_for == calendar_path then  'btn active' else 'btn' end  do%> 
@@ -23,7 +23,7 @@
 		</div>
 		<ul class="nav nav-pills">
 				<li class="<%= 'active' if !params[:battalion] || params[:battalion] == 'false' %>">
-				<%= link_to "My Department", params.merge(battalion: false) %>
+				<%= link_to "Entire Department", params.merge(battalion: false) %>
 				</li>
 				<li class="<%= 'active' if params[:battalion] == 'true' %>">
 				<%= link_to "My Battalion", params.merge(battalion: true) %>
