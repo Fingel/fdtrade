@@ -1,4 +1,4 @@
-== fdTrade
+== FireTrades.com
 
-Nothing here yet :)
+A webapp to facilitate cross department shift trading for firefighters.
 
