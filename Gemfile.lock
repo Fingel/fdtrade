@@ -162,7 +162,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-ses
-  bcrypt-ruby (= 3.1.2)
+  bcrypt-ruby
   bootstrap-sass
   bootstrap-will_paginate
   capybara (= 1.1.2)
