@@ -2,3 +2,5 @@
 
 A webapp to facilitate cross department shift trading for firefighters.
 
+Rails app.
+
